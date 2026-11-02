@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Bio-Circle CB 100 Kostenvergleich</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #222;
+      background: #f5f5f5;
+      padding: 1.5rem 1rem;
+    }
+    #bc-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      background: transparent;
+    }
+
+    /* ── Markenfarben ───────────────────────────────────────
+       grün:        #00b15a   orange:    #f08119
+       rot:         #b61c2e   hellblau:  #008c9b
+       dunkelblau:  #243d76
+    ─────────────────────────────────────────────────────── */
+
+    /* Header */
+    .bc-header { text-align: center; margin-bottom: 1.5rem; }
+    .bc-badge {
+      display: inline-block; background: #243d76; color: #fff;
+      font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 4px 14px; border-radius: 20px;
+    }
+    .bc-header h2 { font-size: 24px; margin: 0.5rem 0 0.3rem; color: #111; }
+    .bc-header p  { font-size: 14px; color: #666; margin: 0; }
+
+    /* Fortschritt */
+    .bc-progress { display: flex; align-items: center; margin-bottom: 1.5rem; }
+    .bc-step-col { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .bc-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .bc-dot-active   { background: #00b15a; color: #fff; }
+    .bc-dot-done     { background: #b3e6ce; color: #005c2e; cursor: pointer; }
+    .bc-dot-done:hover { transform: scale(1.15); box-shadow: 0 0 0 3px #80d4ae; }
+    .bc-dot-inactive { background: #e0e0e0; color: #999; cursor: default; }
+    .bc-step-label { font-size: 11px; margin-top: 3px; text-align: center; }
+    .bc-step-col.bc-step-clickable { cursor: pointer; }
+    .bc-step-col.bc-step-clickable:hover .bc-dot-done { transform: scale(1.15); box-shadow: 0 0 0 3px #80d4ae; }
+    .bc-step-col.bc-step-clickable:hover .bc-step-label { text-decoration: underline; }
+    .bc-line { flex: 1; height: 2px; margin-bottom: 16px; background: #e0e0e0; }
+    .bc-line-done { background: #b3e6ce; }
+
+    /* Karten */
+    .bc-card {
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 12px; padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .bc-step-label-top {
+      font-size: 13px; color: #008c9b;
+      margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .bc-card h3 { font-size: 18px; color: #111; margin-bottom: 4px; }
+    .bc-card p  { font-size: 14px; color: #666; margin-bottom: 1.25rem; }
+
+    /* Felder */
+    .bc-field { margin-bottom: 14px; }
+    .bc-field label { display: block; font-size: 13px; color: #666; margin-bottom: 5px; }
+    .bc-field-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+    .bc-field-row input[type="range"] { flex: 1; accent-color: #00b15a; cursor: pointer; }
+    .bc-field-row input[type="number"] {
+      width: 86px; padding: 6px 10px; font-size: 15px;
+      border: 1px solid #ccc; border-radius: 6px;
+      background: #fafafa; color: #222; text-align: right;
+    }
+    .bc-unit  { font-size: 14px; color: #666; white-space: nowrap; }
+    .bc-hint  { font-size: 12px; color: #999; margin-top: 4px; }
+    .bc-hint-green { font-size: 12px; color: #00b15a; margin-top: 4px; }
+    .bc-divider { border: none; border-top: 1px solid #eee; margin: 1.1rem 0; }
+
+    /* Info-Box abgeleitete Werte */
+    .bc-derived-box {
+      background: #f0faf5; border: 1px solid #b3e6ce;
+      border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;
+    }
+    .bc-derived-title {
+      font-size: 12px; color: #00b15a;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;
+    }
+    .bc-derived-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; color: #555; padding: 3px 0;
+      border-bottom: 1px solid #cceedd;
+    }
+    .bc-derived-row:last-child { border-bottom: none; }
+    .bc-derived-row span:last-child { color: #00b15a; }
+
+    /* Vergleichsbalken */
+    .bc-vbar-box {
+      background: #f8f8f6; border: 1px solid #e4e4e0;
+      border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem;
+    }
+    .bc-vbar-title {
+      font-size: 12px; color: #888;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+    .bc-vbar-item { margin-bottom: 10px; }
+    .bc-vbar-item:last-of-type { margin-bottom: 0; }
+    .bc-vbar-meta {
+      display: flex; justify-content: space-between;
+      font-size: 13px; color: #555; margin-bottom: 4px;
+    }
+    .bc-vbar-meta .val { }
+    .bc-vbar-track { background: #e0e0e0; border-radius: 4px; height: 22px; overflow: hidden; }
+    .bc-vbar-fill {
+      height: 100%; border-radius: 4px;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 8px; font-size: 12px;
+      white-space: nowrap; transition: width 0.4s ease;
+    }
+    .bc-vbar-classic { background: #b4b2a9; color: #3a3a38; }
+    .bc-vbar-cb      { background: #00b15a; color: #fff; }
+    .bc-vbar-fazit {
+      margin-top: 10px; font-size: 13px; color: #00b15a;
+      text-align: center;
+    }
+
+    /* Buttons — Weiter/Primär: orange, Hover: grün */
+    .bc-btn-primary {
+      display: block; width: 100%; padding: 13px;
+      background: #f08119; color: #fff;
+      font-size: 15px;
+      border: none; border-radius: 10px; cursor: pointer;
+      text-align: center; text-decoration: none;
+      margin-bottom: 1rem; transition: background 0.2s;
+    }
+    .bc-btn-primary:hover { background: #00b15a; }
+    .bc-btn-row { display: flex; gap: 10px; margin-bottom: 1rem; }
+    .bc-btn-secondary {
+      padding: 13px 18px; background: #fff; color: #555;
+      font-size: 15px;
+      border: 1px solid #ccc; border-radius: 10px; cursor: pointer;
+      text-decoration: none; text-align: center; transition: background 0.2s;
+    }
+    .bc-btn-secondary:hover { background: #f5f5f5; }
+    .bc-btn-flex { flex: 1; }
+
+    /* Vorschau Schritt 2 */
+    .bc-preview {
+      background: #f8f8f6; border-radius: 8px;
+      padding: 1rem 1.25rem; border: 1px solid #e4e4e0;
+      margin-top: 1rem;
+    }
+    .bc-preview-title {
+      font-size: 12px; color: #888;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .bc-preview-row {
+      display: flex; justify-content: space-between;
+      font-size: 14px; color: #666; padding: 2px 0;
+    }
+    .bc-preview-row span:last-child { color: #222; }
+
+    /* Ergebnis — Ersparnis-Box: orange */
+    .bc-saving-box {
+      background: #f08119; border-radius: 12px;
+      padding: 1rem 1.5rem; margin-bottom: 10px;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .bc-saving-label { font-size: 15px; color: #fff3e6; }
+    .bc-saving-sub   { font-size: 12px; color: #fff3e6; margin-top: 1px; }
+    .bc-saving-value { font-size: 38px; color: #fff; line-height: 1; }
+
+    .bc-cols-3 { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .bc-col {
+      flex: 1; min-width: 150px; background: #fff;
+      border: 1px solid #e0e0e0; border-radius: 10px;
+      padding: 0.9rem;
+    }
+    .bc-col-icon  { font-size: 20px; line-height: 1; margin-bottom: 5px; }
+    .bc-col-title {
+      font-size: 11px; color: #888;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px;
+    }
+    .bc-col-value { font-size: 22px; color: #00b15a; line-height: 1.1; }
+    .bc-col-sub   { font-size: 12px; color: #999; margin-top: 2px; }
+    .bc-col-divider { border: none; border-top: 1px solid #eee; margin: 8px 0; }
+    .bc-col-row {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: #666; padding: 1px 0;
+    }
+    .bc-col-row span:last-child { color: #222; }
+    .bc-col-row-green span:last-child { color: #00b15a; }
+    .bc-ppe-list { font-size: 12px; color: #666; line-height: 1.7; }
+
+    /* PPE-Kachel: Desktop normal, Mobile nebeneinander */
+    .bc-ppe-inner { display: flex; flex-direction: column; }
+    .bc-ppe-cost  { }
+    .bc-ppe-divider-desktop { border: none; border-top: 1px solid #eee; margin: 8px 0; }
+
+    @media (max-width: 480px) {
+      .bc-ppe-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+      }
+      .bc-ppe-cost { flex-shrink: 0; }
+      .bc-ppe-divider-desktop { display: none; }
+      .bc-ppe-list {
+        border-left: 1px solid #eee;
+        padding-left: 12px;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+    }
+
+    /* Balken */
+    .bc-chart-box {
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 10px;
+    }
+    .bc-chart-title {
+      font-size: 11px; color: #888; margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .bc-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .bc-bar-row:last-child { margin-bottom: 0; }
+    .bc-bar-name { font-size: 12px; color: #666; width: 70px; text-align: right; flex-shrink: 0; }
+    .bc-bar-track { flex: 1; background: #efefef; border-radius: 5px; height: 26px; overflow: hidden; }
+    .bc-bar-fill {
+      height: 100%; border-radius: 5px;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 8px; font-size: 12px;
+      white-space: nowrap; transition: width 0.5s ease;
+    }
+    .bc-bar-classic { background: #c8c6be; color: #3a3a38; }
+    .bc-bar-new     { background: #00b15a; color: #fff; }
+
+    /* Warum-Box */
+    .bc-why-box {
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 10px;
+    }
+    .bc-why-title {
+      font-size: 13px; color: #243d76; margin-bottom: 10px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .bc-why-items { display: flex; flex-direction: column; gap: 10px; }
+    .bc-why-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;
+    }
+    .bc-why-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .bc-why-icon { font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+    .bc-why-text { font-size: 13px; color: #444; line-height: 1.6; }
+    .bc-why-text strong { color: #111; }
+
+    /* Hinweis */
+    .bc-note {
+      background: #f0faf5; border-left: 3px solid #008c9b;
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      font-size: 13px; color: #1a5560;
+      display: flex; gap: 10px; align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .bc-note-icon { font-size: 15px; flex-shrink: 0; color: #008c9b; }
+
+    /* CTA — grün, Hover: schwarz */
+    .bc-cta {
+      display: block; width: 100%; padding: 14px;
+      background: #00b15a; color: #fff;
+      font-size: 15px;
+      border: none; border-radius: 10px; cursor: pointer;
+      text-align: center; text-decoration: none;
+      margin-bottom: 8px; transition: background 0.2s;
+    }
+    .bc-cta:hover { background: #000; color: #fff; }
+    .bc-btn-pdf {
+      width: 100%; padding: 11px;
+      background: #fff; color: #00b15a;
+      font-size: 15px;
+      border: 2px solid #00b15a; border-radius: 10px;
+      cursor: pointer; margin-bottom: 6px; transition: background 0.2s, color 0.2s;
+    }
+    .bc-btn-pdf:hover { background: #00b15a; color: #fff; }
+    .bc-btn-reset {
+      background: none; border: none;
+      font-size: 13px; color: #aaa;
+      cursor: pointer; text-decoration: underline;
+      display: block; margin: 0 auto;
+    }
+
+    /* Schritt-Sektionen */
+    .bc-section { display: none; }
+    .bc-section.bc-active { display: block; }
+  </style>
+</head>
+<body>
+
+<div id="bc-wrap">
+
+  <!-- Header -->
+  <div class="bc-header">
+    <span class="bc-badge">Kostenvergleich</span>
+    <h2>Ist CB 100 wirklich teurer?</h2>
+    <p id="bc-header-sub">2 kurze Angaben &#8212; und Sie sehen Ihre jährliche Ersparnis.</p>
+  </div>
+
+  <div class="bc-progress">
+    <div class="bc-step-col" id="bc-step-col-1">
+      <div class="bc-dot bc-dot-active" id="bc-dot-1">1</div>
+      <div class="bc-step-label" id="bc-dot-1-label" style="color:#1D9E75;">Ihr Verbrauch</div>
+    </div>
+    <div class="bc-line" id="bc-line-1"></div>
+    <div class="bc-step-col" id="bc-step-col-2">
+      <div class="bc-dot bc-dot-inactive" id="bc-dot-2">2</div>
+      <div class="bc-step-label" id="bc-dot-2-label" style="color:#999;">Preis</div>
+    </div>
+    <div class="bc-line" id="bc-line-2"></div>
+    <div class="bc-step-col" id="bc-step-col-3">
+      <div class="bc-dot bc-dot-inactive" id="bc-dot-3">3</div>
+      <div class="bc-step-label" id="bc-dot-3-label" style="color:#999;">Ergebnis</div>
+    </div>
+  </div>
+
+  <!-- SCHRITT 1 -->
+  <div class="bc-section bc-active" id="bc-s1">
+    <div class="bc-card">
+      <div class="bc-step-label-top">Schritt 1</div>
+      <h3>Wie hoch ist Ihr monatlicher Verbrauch an klassischem Bremsenreiniger?</h3>
+
+      <div class="bc-field">
+        <label>Monatlicher Verbrauch (Liter)</label>
+        <div class="bc-field-row">
+          <input type="range" id="bc-monthly-vol" min="1" max="200" step="1" value="20">
+          <input type="number" id="bc-monthly-vol-num" value="20" step="1" min="1" max="200">
+          <span class="bc-unit">Liter/Monat</span>
+        </div>
+        <div class="bc-hint">Typischer Wert in KFZ-Betrieben: 10 – 50 L/Monat</div>
+      </div>
+
+      <!-- Abgeleitete Werte -->
+      <div class="bc-derived-box">
+        <div style="font-size:13px;color:#00b15a;margin-bottom:10px;padding:6px 8px;background:#d6f5e8;border-radius:6px;" id="bc-d-factor-hint">
+          Der CB 100 benötigt nur 1/8 der Menge — 8x weniger pro Monat
+        </div>
+        <div style="font-size:12px;color:#555;margin-bottom:10px;padding:6px 8px;background:#f5f5f5;border-radius:6px;line-height:1.6;">
+          &#9432; Dieser Wert basiert auf einem Mittelwert aus Kundenerfahrungen und eigenen Tests. Je nach Art der Verschmutzung kann der tatsächliche Verbrauch leicht abweichen.
+        </div>
+        <div class="bc-derived-row">
+          <span>Jahresverbrauch (klassisch)</span>
+          <span id="bc-d-year-classic">240 L</span>
+        </div>
+        <div class="bc-derived-row">
+          <span>Jahresverbrauch mit CB 100</span>
+          <span id="bc-d-year-cb">30 L</span>
+        </div>
+        <div class="bc-derived-row">
+          <span>Monatsverbrauch mit CB 100</span>
+          <span id="bc-d-month-cb">2,5 L</span>
+        </div>
+        <div class="bc-derived-row">
+          <span>Mengeneinsparung</span>
+          <span id="bc-d-saving-pct">87,5 %</span>
+        </div>
+      </div>
+
+      <!-- Vergleichsbalken -->
+      <div class="bc-vbar-box">
+        <div class="bc-vbar-title">Monatlicher Verbrauch im Vergleich</div>
+        <div class="bc-vbar-item">
+          <div class="bc-vbar-meta">
+            <span>Klassischer Bremsenreiniger</span>
+            <span class="val" id="bc-vb-classic-lbl">20,0 L</span>
+          </div>
+          <div class="bc-vbar-track">
+            <div class="bc-vbar-fill bc-vbar-classic" id="bc-vb-classic" style="width:100%;"></div>
+          </div>
+        </div>
+        <div class="bc-vbar-item">
+          <div class="bc-vbar-meta" style="color:#0F6E56;">
+            <span style="font-weight:600;">Bio-Circle CB 100</span>
+            <span class="val" id="bc-vb-cb-lbl">2,5 L</span>
+          </div>
+          <div class="bc-vbar-track">
+            <div class="bc-vbar-fill bc-vbar-cb" id="bc-vb-cb" style="width:12.5%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="bc-btn-primary" id="bc-btn-s1">Weiter &#8594; Schritt 2</button>
+  </div>
+
+  <!-- SCHRITT 2 -->
+  <div class="bc-section" id="bc-s2">
+    <div class="bc-card">
+      <div class="bc-step-label-top">Schritt 2</div>
+      <h3>Was zahlen Sie aktuell für Ihren Bremsenreiniger?</h3>
+      <p>Den Literpreis finden Sie auf der Rechnung oder dem Produktetikett.</p>
+
+      <div class="bc-field">
+        <label>Literpreis klassischer Bremsenreiniger</label>
+        <div class="bc-field-row">
+          <input type="range" id="bc-classic-price" min="0.50" max="15" step="0.10" value="1.50">
+          <input type="number" id="bc-classic-price-num" value="1.50" step="0.10" min="0.50" max="15">
+          <span class="bc-unit">&#8364;/Liter</span>
+        </div>
+        <div class="bc-hint">Durchschn. Marktpreis: ca. 1,50 – 4,00 EUR/L</div>
+      </div>
+
+      <div class="bc-preview">
+        <div class="bc-preview-title">Ihre Angaben bisher</div>
+        <div class="bc-preview-row"><span>Monatsverbrauch aktuell</span><span id="bc-pre-vol">-</span></div>
+        <div class="bc-preview-row"><span>Jahresverbrauch aktuell</span><span id="bc-pre-vol-year">-</span></div>
+        <div class="bc-preview-row"><span>Jahresverbrauch mit CB 100</span><span id="bc-pre-vol-cb">-</span></div>
+        <div class="bc-preview-row"><span>Literpreis aktuell</span><span id="bc-pre-price">-</span></div>
+      </div>
+    </div>
+    <div class="bc-btn-row">
+      <button class="bc-btn-secondary" id="bc-btn-back">&#8592; Zurück</button>
+      <button class="bc-btn-primary bc-btn-flex" id="bc-btn-s2" style="margin-bottom:0;">Ergebnis berechnen &#8594;</button>
+    </div>
+  </div>
+
+  <!-- SCHRITT 3 -->
+  <div class="bc-section" id="bc-s3">
+
+    <div class="bc-saving-box">
+      <div>
+        <div class="bc-saving-label">Jährliche Gesamtersparnis</div>
+        <div class="bc-saving-sub">Reinigungskosten + Arbeitsschutz</div>
+      </div>
+      <div class="bc-saving-value" id="bc-r-saving-total">-</div>
+    </div>
+
+    <div class="bc-cols-3">
+      <div class="bc-col">
+        <div class="bc-col-icon">&#x1F4B0;</div>
+        <div class="bc-col-title">Reinigungskosten</div>
+        <div class="bc-col-value" id="bc-r-cost-saving">-</div>
+        <div class="bc-col-sub" id="bc-r-cost-pct">-</div>
+        <div class="bc-col-divider"></div>
+        <div class="bc-col-row"><span>Bisher/Jahr</span><span id="bc-r-classic-year">-</span></div>
+        <div class="bc-col-row bc-col-row-green"><span id="bc-col-cb-label">CB 100</span>/Jahr<span id="bc-r-cb-year">-</span></div>
+      </div>
+
+      <div class="bc-col">
+        <div class="bc-col-icon">&#x1F331;</div>
+        <div class="bc-col-title">Umwelt</div>
+        <div class="bc-col-value" id="bc-r-co2">-</div>
+        <div class="bc-col-sub">kg CO&#x2082; weniger/Jahr</div>
+        <div class="bc-col-divider"></div>
+        <div class="bc-col-value" id="bc-r-solvent">-</div>
+        <div class="bc-col-sub">Liter Lösemittel eingespart</div>
+      </div>
+
+      <div class="bc-col">
+        <div class="bc-col-icon">&#x1F9BA;</div>
+        <div class="bc-col-title">Arbeitsschutz</div>
+        <div class="bc-ppe-inner">
+          <div class="bc-ppe-cost">
+            <div class="bc-col-value" id="bc-r-ppe-saving">-</div>
+            <div class="bc-col-sub">Ersparnis pro Jahr</div>
+          </div>
+          <div class="bc-col-divider bc-ppe-divider-desktop"></div>
+          <div class="bc-ppe-list">
+            <span style="color:#b61c2e;">&#x2715;</span> Atemschutz &amp; Filter<br>
+            <span style="color:#b61c2e;">&#x2715;</span> Chemikalienschutzhandschuhe<br>
+            <span style="color:#00b15a;">&#x2713;</span> Nur Einweghandschuhe
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bc-chart-box">
+      <div class="bc-chart-title">Jahreskosten Reiniger im Vergleich</div>
+      <div class="bc-bar-row">
+        <div class="bc-bar-name">Bisher</div>
+        <div class="bc-bar-track">
+          <div class="bc-bar-fill bc-bar-classic" id="bc-bar-classic" style="width:100%;">-</div>
+        </div>
+      </div>
+      <div class="bc-bar-row">
+        <div class="bc-bar-name" id="bc-bar-cb-label">CB 100</div>
+        <div class="bc-bar-track">
+          <div class="bc-bar-fill bc-bar-new" id="bc-bar-cb" style="width:50%;">-</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bc-why-box">
+      <div class="bc-why-title">&#x1F4A1; Warum reicht so viel weniger?</div>
+      <div class="bc-why-items">
+        <div class="bc-why-item">
+          <div class="bc-why-icon">💨</div>
+          <div class="bc-why-text">
+            <strong>0 % Verdunstungsverlust</strong><br>
+            Während Bremsenreiniger flüchtig in die Luft geht, landet CB 100 zu 100&nbsp;% auf der Verschmutzung. Sie reinigen die gleiche Fläche mit massiv weniger Flüssigkeit.
+          </div>
+        </div>
+        <div class="bc-why-item">
+          <div class="bc-why-icon">🔬</div>
+          <div class="bc-why-text">
+            <strong>Aktives Unterwandern</strong><br>
+            Statt Dreck mit hohem Druck „wegzuspülen", kriechen die Tenside unter die Fettschicht und lösen sie ab. Ein gezielter Sprühstoß ersetzt das Fluten mit der Dose.
+          </div>
+        </div>
+        <div class="bc-why-item">
+          <div class="bc-why-icon">⏱️</div>
+          <div class="bc-why-text">
+            <strong>Dauerhafte Wirkkraft</strong><br>
+            CB 100 trocknet nicht sofort ab, sondern bleibt auf der Oberfläche aktiv. Der Reiniger arbeitet für Sie weiter, während Lösemittel längst verflogen sind.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bc-note">
+      <span class="bc-note-icon">&#9432;</span>
+      <span>Der CB 100 ist lösemittelfrei und nicht kennzeichnungspflichtig. Mögliche Einsparungen bei der Entsorgung lösemittelhaltiger Abfälle sind in dieser Berechnung noch nicht berücksichtigt. Alle Angaben sind Richtwerte.</span>
+    </div>
+
+    <a class="bc-cta" id="bc-cta" href="#" target="_blank">-</a>
+    <button class="bc-btn-pdf" id="bc-btn-pdf">&#x1F4C4; Ergebnis als PDF speichern</button>
+    <button class="bc-btn-reset" id="bc-btn-reset">Neue Berechnung starten</button>
+
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function () {
+
+  /* =====================================================
+     KONFIGURATION
+     ===================================================== */
+
+  var Reiniger_Name         = 'Bio-Circle CB 100';
+  var Reiniger_Literpreis   = 7.50;
+
+  /* Mengenverhältnis: 5 ml CB100 ersetzt 40 ml klassischen Reiniger → Faktor 1/8 */
+  var MENGEN_FAKTOR         = 5 / 40; // = 0.125
+
+  var KLASSISCH_PREIS_START = 1.50;
+  var MONTHLY_VOL_START     = 20;     // Liter/Monat
+
+  var CTA_TEXT = 'Jetzt CB 100 im 20-L-Gebinde bestellen';
+  var CTA_URL  = 'https://www.bio-circle.de/shop/reiniger/industriereiniger/bremsenreiniger-alternative';
+
+  var CO2_FAKTOR           = 1.5;
+  var LOESEMITTEL_ANTEIL   = 0.95;
+  var PSA_Kosten_Klassisch = 120;
+  var PSA_Kosten_Reiniger  = 10;
+
+  var MONATE = 12;
+
+  /* =================================================== */
+
+  function g(id)     { return document.getElementById(id); }
+  function fmt(v, d) { return v.toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function eur(v)    { return fmt(v, 2) + ' EUR'; }
+  function num(id)   { return parseFloat(g(id).value) || 0; }
+  function setText(id, t) { var e = g(id); if (e) e.textContent = t; }
+
+  /* Initialisierung */
+  g('bc-cta').href        = CTA_URL;
+  g('bc-cta').textContent = CTA_TEXT;
+  setText('bc-col-cb-label',  Reiniger_Name);
+  setText('bc-bar-cb-label',  Reiniger_Name);
+
+  g('bc-monthly-vol').value     = MONTHLY_VOL_START;
+  g('bc-monthly-vol-num').value = MONTHLY_VOL_START;
+  g('bc-classic-price').value     = KLASSISCH_PREIS_START;
+  g('bc-classic-price-num').value = KLASSISCH_PREIS_START.toFixed(2);
+
+  /* Schritte */
+  var step = 1;
+
+  function showStep(n) {
+    step = n;
+    ['bc-s1','bc-s2','bc-s3'].forEach(function(id, i) {
+      var el = g(id);
+      el.className = el.className.replace(' bc-active','');
+      if (i + 1 === n) el.className += ' bc-active';
+    });
+    setText('bc-header-sub', n === 3 ? '' : '2 kurze Angaben \u2014 und Sie sehen Ihre j\u00e4hrliche Ersparnis.');
+    for (var d = 1; d <= 3; d++) {
+      var dot   = g('bc-dot-' + d);
+      var label = g('bc-dot-' + d + '-label');
+      var col   = g('bc-step-col-' + d); // matches id="bc-step-col-N"
+      var isDone   = d < n;
+      var isActive = d === n;
+      dot.className = 'bc-dot ' + (isDone ? 'bc-dot-done' : isActive ? 'bc-dot-active' : 'bc-dot-inactive');
+      label.style.color = d <= n ? '#1D9E75' : '#999';
+      /* Klickbarkeit */
+      if (col) {
+        col.className = 'bc-step-col' + (isDone ? ' bc-step-clickable' : '');
+        col.onclick = (function(target) {
+          return isDone ? function() { showStep(target); } : null;
+        }(d));
+        col.title = isDone ? 'Zurück zu Schritt ' + d : '';
+      }
+    }
+    g('bc-line-1').className = 'bc-line' + (n >= 2 ? ' bc-line-done' : '');
+    g('bc-line-2').className = 'bc-line' + (n >= 3 ? ' bc-line-done' : '');
+    if (n === 2) updatePreview();
+    if (n === 3) calc();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* Regler synchronisieren */
+  function sync(rId, nId, dec) {
+    var r = g(rId), n = g(nId);
+    r.addEventListener('input', function() {
+      n.value = parseFloat(r.value).toFixed(dec);
+      updateDerived();
+      if (step === 3) calc();
+    });
+    n.addEventListener('input', function() {
+      r.value = n.value;
+      updateDerived();
+      if (step === 3) calc();
+    });
+  }
+  sync('bc-monthly-vol',   'bc-monthly-vol-num',   0);
+  sync('bc-classic-price', 'bc-classic-price-num', 2);
+
+  /* Abgeleitete Werte & Vergleichsbalken */
+  function updateDerived() {
+    var volMonth  = num('bc-monthly-vol');
+    var volYear   = volMonth * MONATE;
+    var cbMonth   = volMonth * MENGEN_FAKTOR;
+    var cbYear    = cbMonth  * MONATE;
+    var savPct    = (1 - MENGEN_FAKTOR) * 100;
+    var factor    = Math.round(1 / MENGEN_FAKTOR);
+
+    setText('bc-d-factor-hint', 'Der CB 100 ben\u00f6tigt nur 1/' + factor + ' der Menge \u2014 ' + factor + 'x weniger pro Monat');
+    setText('bc-d-year-classic', fmt(volYear, 0) + ' L');
+    setText('bc-d-year-cb',      fmt(cbYear, 1) + ' L');
+    setText('bc-d-month-cb',     fmt(cbMonth, 1) + ' L');
+    setText('bc-d-saving-pct',   fmt(savPct, 1) + ' %');
+
+    /* Vergleichsbalken */
+    var cbW = Math.max(Math.round(MENGEN_FAKTOR * 100), 3);
+    g('bc-vb-classic').style.width = '100%';
+    g('bc-vb-cb').style.width      = cbW + '%';
+    setText('bc-vb-classic-lbl', fmt(volMonth, 1) + ' L');
+    setText('bc-vb-cb-lbl',      fmt(cbMonth,  1) + ' L');
+  }
+  updateDerived();
+
+  /* Vorschau Schritt 2 */
+  function updatePreview() {
+    var volMonth = num('bc-monthly-vol');
+    var volYear  = volMonth * MONATE;
+    var cbYear   = volYear  * MENGEN_FAKTOR;
+    setText('bc-pre-vol',      fmt(volMonth, 0) + ' L/Monat');
+    setText('bc-pre-vol-year', fmt(volYear,  0) + ' L/Jahr');
+    setText('bc-pre-vol-cb',   fmt(cbYear,   1) + ' L/Jahr');
+    setText('bc-pre-price',    fmt(num('bc-classic-price'), 2) + ' EUR/L');
+  }
+  g('bc-classic-price').addEventListener('input',     updatePreview);
+  g('bc-classic-price-num').addEventListener('input', updatePreview);
+
+  /* Hauptberechnung */
+  function calc() {
+    var volMonth   = num('bc-monthly-vol');
+    var cPrice     = num('bc-classic-price');
+    var volYear    = volMonth * MONATE;          // L/Jahr klassisch
+    var cbVolYear  = volYear  * MENGEN_FAKTOR;   // L/Jahr CB100
+
+    var cCostYear  = volYear   * cPrice;
+    var cbCostYear = cbVolYear * Reiniger_Literpreis;
+
+    var costSaving = cCostYear - cbCostYear;
+    var costPct    = cCostYear > 0 ? Math.round((costSaving / cCostYear) * 100) : 0;
+
+    var solventSaved = (volYear - cbVolYear) * LOESEMITTEL_ANTEIL;
+    var co2Saved     = solventSaved * CO2_FAKTOR;
+
+    var ppeSaving   = PSA_Kosten_Klassisch - PSA_Kosten_Reiniger;
+    var totalSaving = costSaving + ppeSaving;
+
+    window.bcLastResult = {
+      volMonth: volMonth, volYear: volYear, cbVolYear: cbVolYear,
+      cPrice: cPrice,
+      cCostYear: cCostYear, cbCostYear: cbCostYear,
+      costSaving: costSaving, costPct: costPct,
+      co2Saved: co2Saved, solventSaved: solventSaved,
+      ppeSaving: ppeSaving, totalSaving: totalSaving
+    };
+
+    setText('bc-r-saving-total', eur(totalSaving));
+    setText('bc-r-cost-saving',  eur(costSaving));
+    setText('bc-r-cost-pct',     (costSaving >= 0 ? 'Einsparung: ' : 'Mehrkosten: ') + Math.abs(costPct) + '% ggü. bisher');
+    setText('bc-r-classic-year', eur(cCostYear));
+    setText('bc-r-cb-year',      eur(cbCostYear));
+    setText('bc-r-co2',          fmt(co2Saved, 1));
+    setText('bc-r-solvent',      fmt(solventSaved, 1));
+    setText('bc-r-ppe-saving',   eur(ppeSaving));
+
+    var max = Math.max(cCostYear, cbCostYear, 0.01);
+    g('bc-bar-classic').style.width = Math.round(cCostYear / max * 100) + '%';
+    g('bc-bar-cb').style.width      = Math.max(Math.round(cbCostYear / max * 100), 3) + '%';
+    setText('bc-bar-classic', eur(cCostYear));
+    setText('bc-bar-cb',      eur(cbCostYear));
+  }
+
+  /* Buttons */
+  g('bc-btn-s1').addEventListener('click',    function() { showStep(2); });
+  g('bc-btn-back').addEventListener('click',  function() { showStep(1); });
+  g('bc-btn-s2').addEventListener('click',    function() { showStep(3); });
+  g('bc-btn-reset').addEventListener('click', function() {
+    g('bc-monthly-vol').value       = MONTHLY_VOL_START;
+    g('bc-monthly-vol-num').value   = MONTHLY_VOL_START;
+    g('bc-classic-price').value     = KLASSISCH_PREIS_START;
+    g('bc-classic-price-num').value = KLASSISCH_PREIS_START.toFixed(2);
+    updateDerived();
+    showStep(1);
+  });
+  g('bc-btn-pdf').addEventListener('click', function() { exportPDF(); });
+
+  /* PDF-Export */
+  var LOGO_B64 = '/9j/4UcMaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/Pgo8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA5LjEtYzAwMyAxLjAwMDAwMCwgMDAwMC8wMC8wMC0wMDowMDowMCAgICAgICAgIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICAgICAgICAgICB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnhtcEdJbWc9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9nL2ltZy8iCiAgICAgICAgICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgICAgICAgICB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIKICAgICAgICAgICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgICAgICAgICAgeG1sbnM6aWxsdXN0cmF0b3I9Imh0dHA6Ly9ucy5hZG9iZS5jb20vaWxsdXN0cmF0b3IvMS4wLyIKICAgICAgICAgICAgeG1sbnM6cGRmPSJodHRwOi8vbnMuYWRvYmUuY29tL3BkZi8xLjMvIj4KICAgICAgICAgPGRjOmZvcm1hdD5KUEVHIGZpbGUgZm9ybWF0PC9kYzpmb3JtYXQ+CiAgICAgICAgIDxkYzp0aXRsZT4KICAgICAgICAgICAgPHJkZjpBbHQ+CiAgICAgICAgICAgICAgIDxyZGY6bGkgeG1sOmxhbmc9IngtZGVmYXVsdCI+QmlvLUNpcmNsZSBMb2dvIHB1cjwvcmRmOmxpPgogICAgICAgICAgICA8L3JkZjpBbHQ+CiAgICAgICAgIDwvZGM6dGl0bGU+CiAgICAgICAgIDx4bXA6TWV0YWRhdGFEYXRlPjIwMjUtMTItMTZUMDc6NDY6MzMrMDE6MDA8L3htcDpNZXRhZGF0YURhdGU+CiAgICAgICAgIDx4bXA6TW9kaWZ5RGF0ZT4yMDI1LTEyLTE2VDA2OjQ2OjMzWjwveG1wOk1vZGlmeURhdGU+CiAgICAgICAgIDx4bXA6Q3JlYXRlRGF0ZT4yMDI1LTEyLTE2VDA3OjQ2OjMzKzAxOjAwPC94bXA6Q3JlYXRlRGF0ZT4KICAgICAgICAgPHhtcDpDcmVhdG9yVG9vbD5BZG9iZSBJbGx1c3RyYXRvciAyOS44IChXaW5kb3dzKTwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8eG1wOlRodW1ibmFpbHM+CiAgICAgICAgICAgIDxyZGY6QWx0PgogICAgICAgICAgICAgICA8cmRmOmxpIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgICAgICAgPHhtcEdJbWc6d2lkdGg+MjU2PC94bXBHSW1nOndpZHRoPgogICAgICAgICAgICAgICAgICA8eG1wR0ltZzpoZWlnaHQ+MTA4PC94bXBHSW1nOmhlaWdodD4KICAgICAgICAgICAgICAgICAgPHhtcEdJbWc6Zm9ybWF0PkpQRUc8L3htcEdJbWc6Zm9ybWF0PgogICAgICAgICAgICAgICAgICA8eG1wR0ltZzppbWFnZT4vOWovNEFBUVNrWkpSZ0FCQWdFQUFBQUFBQUQvN1FBc1VHaHZkRzl6YUc5d0lETXVNQUE0UWtsTkErMEFBQUFBQUJBQUFBQUFBQUVBJiN4QTtBUUFBQUFBQUFRQUIvKzRBRGtGa2IySmxBR1RBQUFBQUFmL2JBSVFBQmdRRUJBVUVCZ1VGQmdrR0JRWUpDd2dHQmdnTERBb0tDd29LJiN4QTtEQkFNREF3TURBd1FEQTRQRUE4T0RCTVRGQlFURXh3Ykd4c2NIeDhmSHg4Zkh4OGZId0VIQndjTkRBMFlFQkFZR2hVUkZSb2ZIeDhmJiN4QTtIeDhmSHg4Zkh4OGZIeDhmSHg4Zkh4OGZIeDhmSHg4Zkh4OGZIeDhmSHg4Zkh4OGZIeDhmSHg4Zkh4OGYvOEFBRVFnQWJBRUFBd0VSJiN4QTtBQUlSQVFNUkFmL0VBYUlBQUFBSEFRRUJBUUVBQUFBQUFBQUFBQVFGQXdJR0FRQUhDQWtLQ3dFQUFnSURBUUVCQVFFQUFBQUFBQUFBJiN4QTtBUUFDQXdRRkJnY0lDUW9MRUFBQ0FRTURBZ1FDQmdjREJBSUdBbk1CQWdNUkJBQUZJUkl4UVZFR0UyRWljWUVVTXBHaEJ4V3hRaVBCJiN4QTtVdEhoTXhaaThDUnlndkVsUXpSVGtxS3lZM1BDTlVRbms2T3pOaGRVWkhURDB1SUlKb01KQ2hnWmhKUkZScVMwVnROVktCcnk0L1BFJiN4QTsxT1QwWlhXRmxhVzF4ZFhsOVdaMmhwYW10c2JXNXZZM1IxZG5kNGVYcDdmSDErZjNPRWhZYUhpSW1LaTR5TmpvK0NrNVNWbHBlWW1aJiN4QTtxYm5KMmVuNUtqcEtXbXA2aXBxcXVzcmE2dm9SQUFJQ0FRSURCUVVFQlFZRUNBTURiUUVBQWhFREJDRVNNVUVGVVJOaElnWnhnWkV5JiN4QTtvYkh3Rk1IUjRTTkNGVkppY3ZFekpEUkRnaGFTVXlXaVk3TENCM1BTTmVKRWd4ZFVrd2dKQ2hnWkpqWkZHaWRrZEZVMzhxT3p3eWdwJiN4QTswK1B6aEpTa3RNVFU1UFJsZFlXVnBiWEYxZVgxUmxabWRvYVdwcmJHMXViMlIxZG5kNGVYcDdmSDErZjNPRWhZYUhpSW1LaTR5TmpvJiN4QTsrRGxKV1dsNWlabXB1Y25aNmZrcU9rcGFhbnFLbXFxNnl0cnErdi9hQUF3REFRQUNFUU1SQUQ4QTlVNHE3RlhZcTdGWFlxN0ZYWXE3JiN4QTtGWFlxN0ZYWXE3RlVtMXZ6aDViMFVFYWhmUnh5ai9qM1U4NWYrQVdyRDZjaExKR1BOeHMycnhZdnFsWDNzRjFiODhZRkpUU2RPYVRyJiN4QTtTYTVZS1A4QWdFNWY4U3lpV3A3ZzZyTDI1RWZSRy9leExVUHpYODYzaFBHOFcwUS9zVzhhci93emMzLzRiS1Rta2VycjhuYTJlWFd2JiN4QTtjRWh1dk1mbUM3SitzNmxkVEE5UTgwaEgzRTB5QmtUekxoeTFXV1hPVXZtbDd1N3NXZGl6SHF4TlNmdnlMU1NUemFCSUlJTkNOd1IxJiN4QTtyaW9LUHRmTUd1MmhCdGRSdVlhZEJITklvKzRIQ0pFY202T3B5UjVTbDgyUmFaK2JQbk95SUVseWw3R1AyTGxBZitHVGcvNDViSFBJJiN4QTtPWmk3V3p4NW5pOTdPZEIvT2pSTHNyRnEwRDZmS2R2V1dzc05mZWc1cjl4K2VYUjFBNnUxd2RzNDViVEhDZm1Ib0ZyZDIxM2JwY1dzJiN4QTtxVHdTQ3Njc2JCbEk5aU15QWI1TzNqSVNGamNLdUZrN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlhZcTdGWFlxJiN4QTs3RldPK2FQUG5sL3k2cFM2bTlhOHBWYk9HalNmN0xzZy93QmI2SzVWUEtJdUhxdGRqdy9VZCs3cThsOHlmbXA1bDFjdEZieWZvMnpPJiN4QTszcFFFOHlQOHVYWmo5RkJtTFBOSXZQYW50WExrMkhwSGwrdGh3RWtzbEFESkk1NkNwWWsvck9VdXMzSjgyVmFOK1YzbkRVd3IvVkJaJiN4QTtRdDBrdXo2Zi9DVU1uL0M1YkhESXV4dzlsWnA5T0VlZjR0bVdtL2tiWktBZFMxT1NROTB0MFdNRC9aUHpyL3dPWERUZDVkbGo3RGovJiN4QTtBQlNKOTM0TElyVDhxUEpGdlRsWk5jTVAycFpaRCtDc3EvaGxnd1JjeUhaV0FmdzM4U21VZmtYeWNnb3VqMnAvMW93My9FcTVMd285JiN4QTt6ZU5GaC9tUitUcFBJdms2UVViUjdVRC9BQ1l3cCs5YVkrRkh1VTZMRC9NajhrcnZmeWw4azNJUEMwa3RXUDdjTXIxSHlEbDEvREluJiN4QTtUeGNlZlpXQ1hTdmNXS2F6K1I5d2l0Sm8rb0NXblNDNVhpZitSaVZIL0NqS3BhWTlDNEdic00vd1MrZjYvd0JqenZXTkIxalJyajZ2JiN4QTtxZHE5dElmczhoVldwM1J4VlcrZzVqeWlSemRMbTA4OFJxWXBGZVd2TnV0ZVhib1RhZk1SRXhyTmF2VXhTZjZ5K1B1TjhNSm1QSnMwJiN4QTsyc25oTnhPM2QwZTNhRCtZbmwzVk5GazFLYTRTeU51QUx5Q1poeWpZOUtmemh2MmFEZjU1bXh6Ukl0Nm5CMmhqeVE0eWVHdWZrcmVVJiN4QTt2T3RqNW1sMUFXVVR4dzJUb3F1OU9UcklHbzNIOW5kRGpqeWNWc3RKclk1K0xoL2haRmxybU94VjJLdXhWMkt1eFYyS3V4VjJLdXhWJiN4QTsyS3V4VjJLdXhWMkt1eFZaUFBEQkM4MDdyRkRHcGFTUnlGVlZHNUpKNkRFbEJJQXM4bmtmbmI4M3A1MmtzUExyR0tEZFpOUUlvN2Y4JiN4QTtZZ2Zzai9LTy93QXN3OG1lOWc4OXJlMXlmVGkrZjZubVg3KzRtL2FsbmxiM1oyWmo5NUp6R2RGdkk5NUwwSHl2K1R1clg0UzUxbVE2JiN4QTtkYkdoRUFBTnd3OXdmaGorbXA5c3lJYWNubnM3alM5anpsdms5STd1djdIcW1oZVV2TCtoeGhkT3MwamtwUnJoaHpsYjV1MVQ5QTJ6JiN4QTtLampqSGs3L0FBYVhIaUhwRmZlbStUY2gyS3V4VjJLdXhWMkt1eFZEYWxwbW42bmFQYVg4Q1hGdS93QnFOeFVmTWVCSFlqQktJSW9zJiN4QTtNbU9NeFVoWWZQOEE1LzhBTEduZVg5YU5yWTNpWE1Mamw2RmVVc0grUkpUYjVkL2J4MStXQWlhRHlIYUdsamhuVVRZN3VvWXpsYmdQJiN4QTtSL3lRdmZUMSsrdERzTGkyNWovV2ljQUQ3bk9aR21QcWQzMkhPc2tvOTQrNysxN1JtYTlNN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlhZJiN4QTtxN0ZYWXE3RlhZcW8zdDVhMlZwTGQzVWdpdDRGTHl5TjBDakFUUXNzWnpFUVNlUWVEZWZQekN2Zk1rNXRyZmxiNlJHMzd1Q3Z4U0VIJiN4QTtaNUtmZ3ZRWmdaTXBsN25rOWYyakxNZUViUSsvM3BGNWU4dDZ0cjkrTFBUb3ViN0dXUnRvNDEvbWR1d3lFWW1Sb09KcDlOUE5MaGlIJiN4QTt1bmsvOHZ0Rjh1UnJLaS9XdFNJL2VYc2czRmVvalhmZ1B4OTh6c2VJUjk3MWVrMEVNSTIzbDNzb3kxem5ZcTdGWFlxN0ZYWXE3RlhZJiN4QTtxN0ZVQnJtbjMyb2FkSmEyVisrblRTYmZXWTFEc0IzQXFSVDVnMXlNNGtqWTAxWm9TbkVpSjRUM3ZJOVYvSmZ6Tkc3eVdsMUJmOGlTJiN4QTtTeGFLUmlkNmtOeVhmL1d6RWxwNVBQWmV4Y3QyQ0pmWXhUVXZKdm1uVGFtODB1NFJGKzFJcUdSQi9zMDVMK09WR0VoekRyc21pelE1JiN4QTt4UDMvQUhKaitXRjc5Vjg3NmNTYUpNWGhmZWxmVWpZS1ArQ3Brc0pxUWIreTU4T2VQbnMraGMyRDJEc1ZkaXJzVmRpcnNWZGlyc1ZVJiN4QTtieStzcktBejN0eEhiUUFnR1daMWpTcDZEa3hBd0VnYzJNNXhpTGthQ1gvNHU4cWY5WHF3L3dDa21IL21ySStKSHZEVCtidy96NC9NJiN4QTtJNnoxSFQ3NUM5bGRRM1NEcTBNaXlENzFKeVFrRHliWVpJeUZ4SUtJd3MwTytwYWNqRkh1b1ZkU1F5bVJRUVIxQkZjanhEdlk4Y2U5JiN4QTtXamtqbFFQR3dkRyt5eWtFSDVFWklGSU5yTHE3dExTRnA3cWFPM2hYN1VzckJGSHpaaUJnSkE1b2xJUkZrMEVuSG5yeWNaUFQvVEZyJiN4QTt5NlY5UWNmK0MreitPUThXUGU0LzUzRC9BRDQvTk9iZTV0N21KWnJlVkpvVyt6Skd3ZFQ4aUtqSmcyNU1aQWl3cVlVdXhWMkt1eFZKJiN4QTtOVTg2K1ZOTGthSzkxT0dPVmZ0eEtUSTZud0t4aHlNcmxsaU9aY2JMck1XUGFVZ3A2ZDUrOG42aklJN1hWSVRJZGxXWGxDU2ZBZXFFJiN4QTtyaU1zVDFZNDlkaG5zSkQ3dnZUL0FDeHkwTitsTk0vNWJJUCtSaWYxeVBFTzlqeHg3MVo1NEVpOVo1RldLZ1BxRWdMUTlOenR2aHRKJiN4QTtJNXFQNlUwei9scmgvd0NSaWYxd2NRNzBjY2U5RUt5c0F5a01wNkViakpNbThWYVpsVlN6RUJRS2tuWUFERlVsbjg3K1VZSkRGSnE5JiN4QTtxSEJvUXNpdFErQksxeXM1WTk3alMxbUVHaktQelZZSVBLMnNTSmYyNldkOU5DNnVsMUVJNUhSMU5RZWExWUd1RUNNdDJVUml5ZW9jJiN4QTtNcTZwbkxORENoZVYxalFkV2NoUnY3bkpFMDNFZ2MxS1BVTlBrY0pIY3hPN2JLcXVwSitRQng0aDNvRXdlcUl3c2xrMXhCQW9lYVJZJiN4QTtrSm9HZGdvcjRWT0Fta0VnYzFIOUthWi95MlFmOGpFL3JnNGgzbzQ0OTd2MHBwbi9BQzJRZjhqRS9yanhEdlhqajNvYlZ0YUZuRGJpJiN4QTsxaSt1WGw2L3BXVUNNRkR0eExGbWZmaWlxQ1dhaHdTblhKcnk1ZUVDaFpQSkpiZnpqZFJ1Wkxwck82czBLZlc1TEo1UFV0MWtQRlpIJiN4QTtqa0E1eDE2dUtlTk1yR1U5YXBvR3FJNTBSMXJwK3p6U1g4NzczMDlBc3JNR2pYRnp6SThWaVExLzRaMXlPcE93RGg5dHpyRUIzbDVUJiN4QTtvZmxyVzlka21qMHEyTnk4Q2hwUnpSS0FtZysyeTVpeGdaY25uOEdseVpiNEJkS0tTYXRvZXFIZzBsbHFObzVWcUhpeXNwM0Jwc1IrJiN4QTtCd2Jnc1FaNFovelpCOUcrVzlhL1NubHl5MVdZQ016UWlTYW4yUXk3UFQycXB6WXdsY2JlMDArYmp4aVo2aDgyWDkwOTNmWEYyLzI3JiN4QTtpVjVXK2JzV1A2ODF4TnZFWko4VWpMdkwzMTlZdFBKL2tPeG11UnlrZ3RvWW9vSzBNazdKWGo3YjFKOXN6dUxnZ0hyemxHbndBbm9BJiN4QTtQZVhoMnZlWTlYMTY5YTYxR2RwV0pQcHhDb2pqQi9aUmV3L3pPWVVwR1Jzdks2alV6elN1UmJuOHIrWkxlMCt1VDZaZFIyb0hJeXRFJiN4QTs0VUR4TzJ3OXppWUh1V1dreWlQRVltdmNxZVdmTldyZVhiNWJteGxQcGtqMTdZbjkzS3ZndzhmQnVvd3dtWW5abHBkWFBESzQ4dTd2JiN4QTtmUmVqNnJhNnRwbHRxTnFTWUxsQTZWNmpzVlB1cDJPYkNNckZ2WjRzb3lSRWh5S015VFk3RlhrdjVwZm1IZEpkU2FEcEV4aVdMNGIrJiN4QTs1ak5HTGQ0bFlkQVAydmZieHJpWjh2UVBQOXFkb0VIdzRHdTgvb2VjYVRvV3I2dk9ZTk50SkxxUlJWdUEyVWY1VEdpcjlKekhqRW5rJiN4QTs2VERwNTVEVUJhSTFueW41aTBWUStwMkVsdkdUUVM3UEhYdzVvV1d2MDR5Z1J6WjV0Smx4YnpqVDFUeUJOcStuZmwzZTZuZnp5U1JMJiN4QTtGTk5ZUXVhbElva05PSk8veE1OaDA2VTY1bFlyRUNYb096NVRocGpPUjZFajNCNHhid1NUenh3Umlza3JLaUQzWTBHWWJ6RVltUkFIJiN4QTtWN1grYjh5V1BrcTNzSXZzelRSUUtQOEFJaVV0K3RGek56N1JBZW83WGx3NE9IdklEeHpUTkoxTFZKMnQ5UHQzdXAwUXlOSEdLdHhCJiN4QTtBSnA5SXpEQUo1UE5Zc004aHFJc29yU3RjOHdlWGI0bTBtbHRKNG1wTmJ2VUtTT3F5UnRzZnBHR01qRTdObUxQbHd5MkpIbCtzUGYvJiN4QTtBQzk1b3M5VjhzeGE1S1JieENObnVnVHRHMFZSSjlIdzFIdG1mQ2R4dDYvVDZtT1RFTW5JZGYwdkZmTzNuN1UvTWQzSkdqdEJwS05TJiN4QTtDMEJweUFPenkwKzB4KzRmam1Ia3ltUjhubU5kMmhMTWFHME83OWFWNmQ1VDh5NmxiL1diSFRaNTdmdEtxRUthZnlrMDVmUmtCQW5rJiN4QTtISHhhUExNWEdKSWEwbVB6Qlk2N0JiV0ptc3RXYVZZa1Q0bzNETVJRT3BIVHhCRk1SWU8zTmNJeXd5QVJ1TTNxZjV6WGN0djVVc2JLJiN4QTtTVDFKNTUwOVY2QmVZaWpKWThSMHE1QnpLMUI5SUR2KzJaa1lRTzhzSy9LS3krcytkYmVRaW90SXBaeVA5ajZZL0dRWlRnRnlkWDJSJiN4QTtEaXpnOXdKL1IrbDc1bWU5YTh1L1BTOTQyV2xXSVA4QWVTU1RzUDhBakdvVmYrVGh6RjFKNUIwWGJrL1RHUG5meS90ZVUyZW02amU4JiN4QTsvcWRyTmMrblRuNk1iU2NhMXBYaURTdE14UUNYbjRZcFQra0UrNUUvNGI4eGY5V3U4LzVFUy84QU5PSGhQY3ovQUN1WCtiTDVGNzVkJiN4QTs2YmVhZGFhTGNXVUJ1VG84WWdtdEVwemVCb2hHNWpxUUM2bEZZRHZ1TXpURWdBam85aExHWUNKaUw0ZHE4bU94YVY5WWhtMDdTa3ZKJiN4QTtHMUMxanNkUW51N2VhQ09GRVppMGl0UHZYaTdBUkpVVm9kc3JFZWdjTVkrSUdNZUwxRGhOZ2l2bjl3WTkrZU43Nm10YWZaQTFGdmJ0JiN4QTtLUjJCbWVuNm9oa2RTZDZjRHR5ZHpqSHVIMy8yTWI4bStlYm55c3Q1OVd0STdpUzg0VmVVc09QcDhxYkQvWHlySGtNZVRoYUxYSEFEJiN4QTtRdTBISEJybm5EekhJWWtFMm9Ycm1TU253b2lpZ3FhOUZVVS90T0RlUjgyc1J5YW5MdDlSZTI2cmJSK1cvd0F1N20xaWVwczdGb1ZsJiN4QTs2VmtkZVBLbnU3VnpNa09HRlBVNVkrRHB5Qi9ERjRIbzluOWUxYXlzdXYxbWVLSC9BSkdPRi9qbUNCWnA1REJEaW5HUGVReno4N2RUJiN4QTtrbDF5ejAxVFNDMWc5WGlPbnFTc1FkdlpVRk12MUIzcDIvYmVVbVloMEF2NXIveVk4dDIxNWZYT3NYU0NSYklySGFxMUNQVmI0aTlQJiN4QTtGQlNuengwOExOOXlleGRNSkU1RDA1UFpTQVFRUlVIcU16WHBIem4rWVdrVytrK2JyKzB0bENXeFpaWW8xMkNpVkE1VURzQXhOUGJOJiN4QTtkbGpVaUhqTzBjSXg1aUJ5NXZTL3lmMUZJL0pOeEpkeXJIYldWMUt2cU9hS2tmQkpDU1QwM2M1azZjK25kM25ZK1Q5d2I1UkovV3lmJiN4QTsvRzNsRC9xODJmOEF5T1QrdVdlTEh2Yzc4N2gvbngrYXMvbVBTcGRJdnRTc0xxSzdoc29wSkpIaVlPb01hRjZHbnRoNHhSSVpmbUlHJiN4QTtCbEVnZ1BtZWFhV2VhU2FWaThzckY1SFBVc3hxU2Zweld2RHlrU2JQTXZwVHlsNWZ0dEIwSzJzSWxBa0NoN2x3S0Y1bUZYWS9Uc1BiJiN4QTtObGpod2ludDlMcHhpeGlJK1B2VE82dGJhN3Q1TGE1aVdhM2xIR1NKd0dWZ2V4QnlSRnQwb2lRbzdoaWY1bHlRYVg1QXViVzJVUlJsJiN4QTtZYldDTWRBdkpSeEgrd1U1VG0yaFRnZHBFUTA1QThnOGY4aFdYMTN6anBNQjNBdUZsSTY3UTFsUC9FTXhNWXVRZWI3UGh4WjRqeis3JiN4QTtkbXY1Nlh0YmpTYkVIN0NTenVQSGtWVmYrSXRsK3BPNER0TzNaL1RIM2xKL3lvMTNRTkV2ZFJ2dFZ1UmJzWVVpZ0JWM1pnemNub0VEJiN4QTtmeUxrTUVoRTJYRzdKejQ4UmxLWnJaSVBPMnUyMnUrWmJ2VXJhTXh3U2xWakRDak1JMENjbXAzUEhLOGt1S1Z1SnJzNHk1VEljbVQzJiN4QTtqWHVqZmxEYTI3MWprMWk3NWxUczNvRWN3ZjhBWmVtdjBITER0ajk1YytabGkwUUg4OC9aelk1NUMwQ0xYUE5GcFpUaXRxQ1pya2VLJiN4QTtSamx4L3dCa2FMOU9ReHg0cFU0UForbkdYS0lubHpMNk5paWlpaVNLSkJIRkdBcUlvQVZWQW9BQU9nR2JFQjdNQ3RnaGJqUjlNdU5RJiN4QTt0dFJtdDBlK3RPUWd1Q1BqVU1DQ0s5eHVldVJNUVRiQ1dLSmtKRWVvUEtQenl2UStxNlpaQS8zRUR6RWY4Wm40L3dETXJNWFVuY0I1JiN4QTsvdHlkeWpIdUgzLzJLMzVGMlhLODFXK0kvdTQ0b0ViL0FJeU1XWWY4a3hqcGh1U3k3RGh2S1h1RDEzTXg2SjRmK2RONlp2TlVOc0Q4JiN4QTtOcmJJQ1A4QUtkbWMvZ1Z6QjFCOVR5L2JVN3lnZHdTcnlYNTl1UEswTjBrRmxIY05kc2pPN3NWSUNBZ0RZZjVSeU9QS1l1UG90ZWNBJiN4QTtJRWJ0blhsVDgxdFQxM3pCYWFVZE9paVc0TGM1RmRpVlZFTGs3ai9KeTZHY3lOTzIwbmFzc3VRUTRhdnplbDVsTzZkaXI1Ny9BRFJ2JiN4QTtmcmZuZlVDRFZJQ2tDVTdjRUFiL0FJZXVhL01ia1hqKzFaOFdlWGxzelB5WitYUGxmVVBKbHZmNnJibGJ1NFNTUjdyMVpFS0lIWUsxJiN4QTtPWEQ3SXJ1dVhZOFVUR3k3UFJkbllwNFJLWTlSNjJYbE5yZHoyRjlIZFdjcFdhM2tEd3pMc2FxZGpUMzhNeFFhZWZoTXdsY1R5ZTFmJiN4QTttenFaSGtSQVJ4YlVKSUZLZUczckg3dUdabWVYbzk3MUhhMlN0UDhBMWlQMS9vZWIvbGZaZlcvTytuQWlxUUY1MjcwOU5DVi80YW1ZJiN4QTsrRVhJT2s3S2h4WjQrVzZhZm5UYVN4ZWE0cHlENmR4YklVYnRWR1pXSDBiZmZrdFFQVTM5dFFJeWc5OFUwL0pUekJad1BlYUxjU0NPJiN4QTtXNGRaclRrYWMycHhkUjcwQUlIenlXbm1CczVIWW1vaUx4bm1kdzlVMUxVN0hUTEtXOXZwbGd0b1JWNUcvVUIzSjdBWmx5a0FMTHZzJiN4QTttU01JbVVqUUQ1dDh6NjAydDYvZTZvVjRDNWtyR2g2aEZBUkFmZmlvcm10bkxpTnZFNnJONHVRejczcDJsZVd0WVg4cEdzTlB0L1UxJiN4QTtIVkNKekh5VlBna2RUVWx5bzNoUVpreGdmRG9kWGZZdE5NYVBoaVBWTDlQN0dFLzhxcjgrL3dEVnIvNUwyLzhBMVV5bndKOXpxdjVLJiN4QTsxSDgzN1IrdDZUNVM4cGFscDM1ZmFscFYzRDZPb1h5WFhLTU1ya0dTTDBrM1FzdlJSME9aRUlFUUk2dTcwbWtsRFRTZ1JVcFg5dXp3JiN4QTtyTUo1TjlPZVc5ZnN0ZDBpRFVMVnczcUtQV2pCSEtPU254SXc3RUhObENZa0xlNjArZU9XQWtIWG5tWFJyUFZyVFNacmhmMGhlTVZpJiN4QTtnWGNqNFN3TDAreURTZ3IxT0ptQWFXZW9oR1lnVDZwTUcvUEs5Q2FUcHRqWGVlZDVpUGFKT1A4QXpOeW5VbllCMWZiazZoR1BlZnUvJiN4QTt0WTErUzlsNi9teVM0SStHMXRwSEIveW5Lb0I5ek5sV25IcWNIc1dGNVNlNElYODNyMzZ6NTFuakc0dElZb0Ivd1BxSDhaTUdjM0pyJiN4QTs3WW54WnlPNEFmcC9TeGVmU2IyRFRiWFVuVC9RN3hwRWhrSFRsRWFNRDRlMlZVYXR3WllaQ0FuL0FBeS9ReTM4cU5POHI2anJEMnVyJiN4QTt3ZXRlQWVwWW83ZnVuNGJ1cFQ5b2diN21oSGJMY0FpVHU3RHNuSGluTWlZdVhUdVpsK2RsbkpKNWJ0TGlOYXBiWElEZ2RGVjBZQS9lJiN4QTtBUHB5N1VqWU96N2FnVGlCSFF2UFB5MzEyMTBYelhiM04yNGp0WmxhQ2FVOUZEajRXUHR5QXJtUGlsVW5UZG01eGl6QXk1SFo5QytwJiN4QTtINmZxOHg2ZE9YT280OGFWclh3elkyOWhhWDZONWowaldYdTEwNmNUaXprRVVycjlra3FEVlQzWHFLK3h5RVppWEpxdzZpR1MrRTNUJiN4QTt4RDgxYjAzWG5hK0FOVXRoSEFuK3hRRnYrR1k1aFpqY2k4dDJ0UGl6bnlvUFEveVdzdlE4cVMzQisxZDNMc0RUOWxGVkIrSU9aR21IJiN4QTtwZHoyTkNzTjk1L1l6N01oMno1dzgvM292UE9lclRBMUN6bUVIL2pDQkYveHBtdXltNUY0dnRDZkZua2ZQN3RtYWVWdnlpMG5WZkw5JiN4QTtscU41ZDNNVnhkUitveVI4QW9CWThhY2xKK3pUTG9ZQVJiczlMMlJDZU1Ta1RaWlg1WC9MTFJ2TDJxRFVyYTRubW1WR2pWWlNuRWM2JiN4QTtWUHdxcHJsc01JaWJkaHBlellZWjhRSko4MllaYzdGMkt2bUxXUmUzMnIzMTc2RXArczNFc3dQQnVqdVc4UGZOV1RadDRmUEdVNXlsJiN4QTtSM0phTTNtR1MyV3pMM2IydEFxMnhNcGpvT2dDZE1iS0x6RWNQcXJ1M1pQNUsvTFBXTlZ2NGJqVTdaN1RTbzJEeStzQ2p5Z0d2QkVQJiN4QTt4ZkYvTjBwbHVQQ1NkK1RuYUxzeWM1QXpGUTgrckkvenZsbmtYU2JHQ05uVWVyTklGVW1uMlZUcC9zc3MxSjVCemUyK0lpTVFPOG9EJiN4QTs4azlMbUd0Mzk3TEd5Q0czRVM4Z1J2SzRQY2VFZVIwdzN0cTdGd2tUbElqa1B2OEE3R2VlZi9KeWVadElFVVpXUFVMWW1TemxicFVqJiN4QTs0a1kveXZRZlRUTWpMajRoNXUxMStqR2VGZnhEazhDMVBTZFQwcTZhMTFDM2UyblUvWmNVclR1cDZNUGNaZ0VFYzNrY3VHZU0xSVVWJiN4QTtLYTh2Ym5pczg4azNIWkZkbWVsZkNwT0JFc2twY3lTenp5RCtXRi9xTjFGcUdzd3RiNlpHUTZ3U0FySlBUY0RpZHduaVQxN2VPWDRzJiN4QTtKTzU1TzIwSFpjcGtTeUNvOTNlOXRBQUFBRkFOZ0JtYzlPN0ZYWXE4Vy9Nbjh1YjYwdjU5WDBtQnA3QzRZeVR3eGlyd3V4cTN3amNvJiN4QTtUdnQwekN6WWlEWTVQTTlwZG5TRWpPQXVKNStUQUxXK3ZiTmk5cGNTMjdzS00wVHNoSTl5cEdVQXVuaGtsSDZTUWpOQ3ROZHY5WWdmJiN4QTtTNHBMclVJNVZtVmhWcU1yQmd6c2RnS2pxVGhpQ1RzM2FlR1NlUUdBdVYyelQ4NXBieTYxMnl0MWhkaGIyb1p3Z0xLSkpXSllBZ2VDJiN4QTtybDJvTzdzKzJlS1U0Z0RrUHZUajhqOU1saHQ5VnZKVUtHUjRvVURBZy9BR1p1dmp6R1QwdzVseWV4TVJpSlNQV25ubm12NjdmZVp0JiN4QTtVdXhESXl5M012cGtJMzJBeFZQK0ZBekdtYkpkUHF4T2VXUm84M3JXbitUb2RUL0xDeTBlVmZUbmUzRnpBN2RVbmtKbFVudiszUSsyJiN4QTtaWXgzanA2REhveFBTaUI1MWZ4NXZHWUlOYjB2VWxsaWhtZ3ZiT1dvSVUxV1NOdmxUcU13OXdYbW93eVk1MkFSS0plLzJNOWg1eThwJiN4QTtVdVlpa2Q3R1k3bUVpalJ5cjFwWCtWcU12MFpuZ2ljWHJvR09vdzdqNmh1OE44MCtUTmE4dTNUcGR3czlweXBEZW9DWW5IYmY5bHY4JiN4QTtrNWhUeG1QTjVYVmFMSmhPNDlQZWxQMSsrK3JmVmZyTXYxYi9BSHh6YjAvK0JyVEkyNC9peXJoczEzUFN2eVcwN1g0TlF1YncyelI2JiN4QTtSY3c4V2xrK0VPNmtHTXBYZHFWWVZHMitaR25CdStqdSt4Y1dTTWpLdlFRd1BYaGUzMnVhaGVDQ1FpNHVaWkZQRmlPTE9TS2JlR1VTJiN4QTtObTNWYWlNcFpKU283a29WSTlXalhqR3R3aWpvcWh3UHd5TEFESU9YRjlyTXZ5cmd2MjgxaTV1dlc5R3l0NXJoZy9PaG92cDlEMS92JiN4QTtNdXdmVmZjN0xzcU16bHVWMEFTdzI2aDFDNXVaYmlTQ1QxSm5hUi9nYnF4cWUzdmxMckp3bktSSkIzYlZkWVZRcWk0VlJzQU9ZQUdLJiN4QTtRTW8vbmZhOUYvSmUwdjMxbS91N2t5OEliY1JxSk9WT1VyZzErTHZTUE1uVERkM1BZMEo4Y2pLOWgxL0hrOWV6TWVoZGlyc1ZkaXJzJiN4QTtWZGlyc1ZkaXFuY1cxdGNSK25jUkpOR2VxU0tHSDNHdUFnSG1neEI1c1NzL05ma3EyOHpYV2pHM2cwKzh0M0VjVndZNDBTUWxRU0E0JiN4QTtBNHNDYVVPVWljQktxcHdJYXZDTXB4MEl5SDJzeHk5MkRzVmRpcnNWZGlxWDNYbDdRTHVVeTNlbVdseEtlc2tzRWJ0OTdLVGtUQ1BjJiN4QTsxVHdZNUc1UkIrQ0t0Ykt6dEl2U3RJSTdlSWRJNGtWRis1UUJoQUE1TTR3RVJRRksyRms3RlhZcTdGVkc2dmJPMFFQZFR4MjZNYUswJiN4QTtycWdKNjBCWWpBU0J6WXltSTh6U0cveEJvUDhBMWNyWC9rZkgvd0ExWkh4STk0WStORCtjUG1pSUxteHZZV2FDV0s1aHJ4WXhzc2kxJiN4QTs4RFNveVFJTElTRWh0dW9yb2VpcS9xTHA5c3NnTlE0aGpCcjQxcGc0STl6SHdvYzZDTnlUWTdGWFlxN0ZYWXE3RlhZcTdGWFlxN0ZYJiN4QTtZcTdGWFlxN0ZYWXE3Rlh5N3JWNzlmMWkrdmExRnpjU3lnbndkeXcvQTVxNUd6YndtZWZIa2xMdkpaUDVQL05EV2RDNFd0MVcvd0JNJiN4QTtGQUluUDd5TWY4VnVlMytTZHZDbVc0OHhqN25PMGZhazhXMHZWSDdYdEdnZVpkRzE2MCtzNmJjQ1ZSL2VSSDRaRVBnNkhjZnE4TXpJJiN4QTtURXVUMDJEVVF5eHVKdE04bTN1eFYyS3V4VjJLdXhWMkt1SkFGVDB4VmczbXo4MTlFMGNQYmFlVjFIVUJ0UkQrNVEvNWJqclR3WDd4JiN4QTtsRTg0SExkMWVyN1Z4NHRvK3FYMlBHdGQ4dzZ0cnQ2YnZVcHpOSjBST2lJdjhxTDBVWmh5a1pHeTh6cU5UUExLNUZrbmtiOHRkUTErJiN4QTtSTHk5RFd1a0RmMWVqeSswWVBiL0FDdjE1Wmp3bVh1YzdROW1TeStxVzBQdmU1YWZwMWxwMW5IWjJVS3dXMElwSEdnb0IzK2tudWN6JiN4QTtveEFGQjZuSGpqQWNNUlFSR0ZtN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlVzODBYMzFIeTVxZDJEUm9iYVZrJiN4QTtQVDQrQkMvOE5USVpEVVMwNm1mQmpsTHVCZk1lYTE0UjJLc204aTJkdExxYVRIekFtaFhNWi9kc1ZhckR1T1JLeFVQZ3piK0dXWXh2JiN4QTt6cDJHZ2dESy9FNEQrUGcraGJibDlYajVTaWR1SXJNQUFITlB0VUcyL3Rtd0hKN0NQSlV3cGRpcnNWZGlxQzFMV3RJMHhPZW9Ya05xJiN4QTt2VWVxNnFUOGdUVS9Sa1pUQTV0ZVROQ0F1UkFZVHJmNTBhQmFoazB1R1RVSmgwa05ZWXZ2WWN6L0FNRDlPVXkxQTZPcno5czQ0L1FPJiN4QTtJL0lQTnZNWDVnZVp0ZURSWFZ6Nk5vMy9BQjZXOVk0eVBCdHl6ZjdJbk1hZVdVdWJwTlQyaGx5N0UwTzRKUnBla2FucXQwTFhUclo3JiN4QTttZHYyVUZhRHhZOUZIdVRrQkVuazQyTERQSWFpTEwxcnlmOEFsQloyUlM4MTRyZDNRM1N6WGVGRC9say9iUHQwK2VaZVBUMXVYb3RIJiN4QTsyUkdIcXllbzkzVDlyMGhWVlZDcUFGQW9BTmdBTXlYZE40cTdGWFlxN0ZYWXE3RlhZcTdGWFlxN0ZYWXE3RlhZcTdGWFlxN0ZYWXFoJiN4QTtkVDB5eTFPeGxzYjJQMWJXYW5xeDhtV29WZ3dGVklQVVlKUkJGRmhreHhuSGhseUtVWC81ZitVcnpUVzAvd0RSMFZ2R2QwbGdVSktyJiN4QTtVcHlEZ1ZKLzFxNVdjTVNLcHg4bWd3eWp3OElBOG5sUG1iOHBmTU9sRjVyQmYwblpqY0dJZnZsSCtWSDFQK3hybUxQQkllYnorcDdJJiN4QTt5UTNqNm8vYXdoMGRIWkhVcTZtakt3b1FSMklPVXVxSUkyS00wN1hOWjAwMTArOW50ZDZsWXBHVlQ4MUJvZnB3aVJISnR4NmpKRDZaJiN4QTtFTWh0ZnpYODhXNEFOOHM2am9KWW96K0lWVy9ITEJtbDN1WkR0Yk9PdC9CR3IrYy9uQUxRcmFzZjVqRTFmd2NESmZtSk52OEFMV2J1JiN4QTtqOHYyb2VmODNmTzhpMFM1aWhQOHlRb1Qvd0FPSHdlUEx2WVM3WXpucUI4RW92dlBIbTY5QkZ4cTF4eFBWWTM5SlQ4eEh3R1FPU1I2JiN4QTt1UFBYNXBjNUg3dnVTUjNlUnk3c1hkalZtWTFKUHVUa0hFSkozS2RhTjVMOHo2d1ZOanA4clJOUWllUWVuRlE5dzc4UWZveWNjY2p5JiN4QTtEbFlkRGx5ZlRIYjVQUXZML3dDU1Z2R1ZtMTI3OVpodWJXMnFxZkpwR0FZL1FCODh5STZidmR4cCt4QU44aHZ5RDBmVE5KMDNTN1lXJiN4QTsybjIwZHJBTitFYWdWUFNySHF4OXptUkdJSEozV1BGR0FxSW9JdkpOanNWZGlyc1ZkaXJzVmRpcnNWZGlyc1ZkaXJzVmRpcnNWZGlyJiN4QTtzVmRpcnNWZGlyc1ZkaXJzVlk3NXEvd0x3LzUyUDZuenA4UHJjZldwL2s4ZjNuM1pWazRQNG5FMVhnZjVYaCtQNHQ1UHJ2OEF5cWJrJiN4QTtmMGQra3VWRHg5RGo2VmZmNngrOHpGbHdkTGVlei9rLzRlUDRmOGVZaGRmVS9WLzBUMVBSN2VyeDVkVC9BQzdkTXBkYms0YjlOMTVxJiN4QTtPTEJYdFBxUHFmNlo2dnBiZjNQSGwxMysxaTJZK0MvVmZ3WlpvdjhBeXFlbyt2OEE2VDViY3ZXNGVuOUhvZkhsc2VEcmJzY0g1UDhBJiN4QTtpNC9qK3g2WDVhLzVWZFZQME45UjlmYjArZFBYK2oxLzN1Wk1QRDZVN3ZUZmxmOEFKOE4vYjl1N01jdmRpN0ZYWXE3RlhZcTdGWFlxJiN4QTs3RlhZcTdGWFlxN0ZYWXE3RlhZcTdGWC8yUT09PC94bXBHSW1nOmltYWdlPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgPC9yZGY6QWx0PgogICAgICAgICA8L3htcDpUaHVtYm5haWxzPgogICAgICAgICA8eG1wTU06SW5zdGFuY2VJRD54bXAuaWlkOjMxNGFiNmI4LWQxOTQtZDk0Zi1hZTZhLTc5YmRiOTA0MjM0NDwveG1wTU06SW5zdGFuY2VJRD4KICAgICAgICAgPHhtcE1NOkRvY3VtZW50SUQ+eG1wLmRpZDozMTRhYjZiOC1kMTk0LWQ5NGYtYWU2YS03OWJkYjkwNDIzNDQ8L3htcE1NOkRvY3VtZW50SUQ+CiAgICAgICAgIDx4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ+dXVpZDo1RDIwODkyNDkzQkZEQjExOTE0QTg1OTBEMzE1MDhDODwveG1wTU06T3JpZ2luYWxEb2N1bWVudElEPgogICAgICAgICA8eG1wTU06UmVuZGl0aW9uQ2xhc3M+cHJvb2Y6cGRmPC94bXBNTTpSZW5kaXRpb25DbGFzcz4KICAgICAgICAgPHhtcE1NOkRlcml2ZWRGcm9tIHJkZjpwYXJzZVR5cGU9IlJlc291cmNlIj4KICAgICAgICAgICAgPHN0UmVmOmluc3RhbmNlSUQ+eG1wLmlpZDpkOTJlZGNiZS1jNWM0LWM2NGQtOThjNC01MzU4MDk4ZmE0ZTY8L3N0UmVmOmluc3RhbmNlSUQ+CiAgICAgICAgICAgIDxzdFJlZjpkb2N1bWVudElEPnhtcC5kaWQ6ZDkyZWRjYmUtYzVjNC1jNjRkLTk4YzQtNTM1ODA5OGZhNGU2PC9zdFJlZjpkb2N1bWVudElEPgogICAgICAgICAgICA8c3RSZWY6b3JpZ2luYWxEb2N1bWVudElEPnV1aWQ6NUQyMDg5MjQ5M0JGREIxMTkxNEE4NTkwRDMxNTA4Qzg8L3N0UmVmOm9yaWdpbmFsRG9jdW1lbnRJRD4KICAgICAgICAgICAgPHN0UmVmOnJlbmRpdGlvbkNsYXNzPnByb29mOnBkZjwvc3RSZWY6cmVuZGl0aW9uQ2xhc3M+CiAgICAgICAgIDwveG1wTU06RGVyaXZlZEZyb20+CiAgICAgICAgIDx4bXBNTTpIaXN0b3J5PgogICAgICAgICAgICA8cmRmOlNlcT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDo3NWY0Y2JkZS1lOWQ1LTM1NGEtOTZkZC00NTFlZGQ1ZTlhMjc8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMjEtMDUtMDRUMTM6MTg6MDIrMDI6MDA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIElsbHVzdHJhdG9yIDI1LjIgKFdpbmRvd3MpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICAgICA8c3RFdnQ6Y2hhbmdlZD4vPC9zdEV2dDpjaGFuZ2VkPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgICAgPHJkZjpsaSByZGY6cGFyc2VUeXBlPSJSZXNvdXJjZSI+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDphY3Rpb24+c2F2ZWQ8L3N0RXZ0OmFjdGlvbj4KICAgICAgICAgICAgICAgICAgPHN0RXZ0Omluc3RhbmNlSUQ+eG1wLmlpZDozMTRhYjZiOC1kMTk0LWQ5NGYtYWU2YS03OWJkYjkwNDIzNDQ8L3N0RXZ0Omluc3RhbmNlSUQ+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDp3aGVuPjIwMjUtMTItMTZUMDc6NDY6MzMrMDE6MDA8L3N0RXZ0OndoZW4+CiAgICAgICAgICAgICAgICAgIDxzdEV2dDpzb2Z0d2FyZUFnZW50PkFkb2JlIElsbHVzdHJhdG9yIDI5LjggKFdpbmRvd3MpPC9zdEV2dDpzb2Z0d2FyZUFnZW50PgogICAgICAgICAgICAgICAgICA8c3RFdnQ6Y2hhbmdlZD4vPC9zdEV2dDpjaGFuZ2VkPgogICAgICAgICAgICAgICA8L3JkZjpsaT4KICAgICAgICAgICAgPC9yZGY6U2VxPgogICAgICAgICA8L3htcE1NOkhpc3Rvcnk+CiAgICAgICAgIDxpbGx1c3RyYXRvcjpTdGFydHVwUHJvZmlsZT5QcmludDwvaWxsdXN0cmF0b3I6U3RhcnR1cFByb2ZpbGU+CiAgICAgICAgIDxpbGx1c3RyYXRvcjpDcmVhdG9yU3ViVG9vbD5BSVJvYmluPC9pbGx1c3RyYXRvcjpDcmVhdG9yU3ViVG9vbD4KICAgICAgICAgPHBkZjpQcm9kdWNlcj5BZG9iZSBQREYgbGlicmFyeSAxNy4wMDwvcGRmOlByb2R1Y2VyPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg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';
+
+  function exportPDF() {
+    if (!window.bcLastResult) return;
+    var r = window.bcLastResult;
+    var jsPDF = window.jspdf ? window.jspdf.jsPDF : window.jsPDF;
+    if (!jsPDF) { alert('PDF-Bibliothek noch nicht geladen. Bitte kurz warten.'); return; }
+
+    var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    var W = 210, pad = 18, col = W - pad * 2, y = 20;
+
+    function fmtN(v, d) { return v.toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+    function pEur(v)  { return fmtN(v, 2) + ' EUR'; }
+    function ln()  { doc.setDrawColor('#e0e0e0'); doc.line(pad, y, W - pad, y); y += 5; }
+    function gap(n){ y += (n || 4); }
+
+    /* Grüner Header */
+    doc.setFillColor('#00b15a'); doc.rect(0, 0, W, 32, 'F');
+
+    /* Logo rechts oben */
+    try {
+      doc.addImage(LOGO_B64, 'JPEG', W - pad - 28, 3, 26, 26);
+    } catch(e) {}
+
+    /* Titeltext */
+    doc.setTextColor('#ffffff'); doc.setFont('helvetica','bold'); doc.setFontSize(16);
+    doc.text(Reiniger_Name + ' - Kostenvergleich', pad, 13);
+    doc.setFont('helvetica','normal'); doc.setFontSize(9);
+    doc.text('Erstellt am ' + new Date().toLocaleDateString('de-DE'), pad, 22);
+    doc.text('www.bio-circle.de', W - pad - 30, 28, { align: 'right' });
+    y = 40;
+
+    doc.setFillColor('#fdecd8'); doc.roundedRect(pad, y, col, 22, 3, 3, 'F');
+    doc.setTextColor('#7a3a00'); doc.setFont('helvetica','bold'); doc.setFontSize(10);
+    doc.text('Jaehrliche Gesamtersparnis (Reinigungskosten + Arbeitsschutz)', pad + 5, y + 8);
+    doc.setFontSize(18); doc.setTextColor('#f08119');
+    doc.text(pEur(r.totalSaving), W - pad - 5, y + 15, { align: 'right' });
+    y += 30;
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor('#333');
+    doc.text('Ihre Eingaben', pad, y); y += 6; ln();
+    [
+      ['Monatlicher Verbrauch (klassisch)', fmtN(r.volMonth, 0) + ' L/Monat'],
+      ['Jahresverbrauch (klassisch)', fmtN(r.volYear, 0) + ' L/Jahr'],
+      ['Jahresverbrauch (' + Reiniger_Name + ')', fmtN(r.cbVolYear, 1) + ' L/Jahr'],
+      ['Literpreis bisheriger Reiniger', fmtN(r.cPrice, 2) + ' EUR/L'],
+      ['Literpreis ' + Reiniger_Name, fmtN(Reiniger_Literpreis, 2) + ' EUR/L'],
+    ].forEach(function(row) {
+      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor('#444');
+      doc.text(row[0], pad, y);
+      doc.setFont('helvetica','bold'); doc.text(row[1], W - pad, y, { align:'right' });
+      y += 6;
+    });
+    gap(4);
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor('#333');
+    doc.text('Reinigungskosten im Vergleich', pad, y); y += 6; ln();
+    var bW = col - 45;
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor('#666');
+    doc.text('Bisher/Jahr', pad, y+4);
+    doc.setFillColor('#c8c6be'); doc.roundedRect(pad+40, y, bW, 7, 1,1,'F');
+    doc.setFont('helvetica','bold'); doc.setTextColor('#333');
+    doc.text(pEur(r.cCostYear), W-pad, y+5, { align:'right' }); y += 12;
+    var cbP = r.cCostYear > 0 ? r.cbCostYear / r.cCostYear : 0.1;
+    doc.setFont('helvetica','normal'); doc.setTextColor('#666');
+    doc.text(Reiniger_Name+'/Jahr', pad, y+4);
+    doc.setFillColor('#00b15a'); doc.roundedRect(pad+40, y, Math.max(bW*cbP,4), 7, 1,1,'F');
+    doc.setFont('helvetica','bold'); doc.setTextColor('#00b15a');
+    doc.text(pEur(r.cbCostYear), W-pad, y+5, { align:'right' }); y += 12;
+    doc.setFontSize(10);
+    doc.text('Ersparnis: ' + pEur(r.costSaving) + ' (' + Math.abs(r.costPct) + '% weniger)', pad, y);
+    y += 10; gap(2);
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor('#333');
+    doc.text('Umwelt', pad, y); y += 6; ln();
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor('#444');
+    doc.text('Eingesparte Liter Loesemittel/Jahr', pad, y);
+    doc.setFont('helvetica','bold'); doc.text(fmtN(r.solventSaved,1)+' L', W-pad, y, { align:'right' }); y+=6;
+    doc.setFont('helvetica','normal');
+    doc.text('Eingesparte CO2-Aequivalente/Jahr', pad, y);
+    doc.setFont('helvetica','bold'); doc.text(fmtN(r.co2Saved,1)+' kg CO2', W-pad, y, { align:'right' }); y+=6;
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor('#888');
+    doc.text('Basis: 1,5 kg CO2 pro Liter eingespartem Loesemittel (Herstellung & Entsorgung)', pad, y);
+    y += 10; gap(2);
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor('#333');
+    doc.text('Arbeitsschutz', pad, y); y += 6; ln();
+    [
+      ['Bisherige Schutzausruestung/Jahr', pEur(PSA_Kosten_Klassisch)],
+      [Reiniger_Name+'/Jahr (nur Einweghandschuhe)', pEur(PSA_Kosten_Reiniger)],
+      ['Ersparnis Arbeitsschutz', pEur(r.ppeSaving)],
+    ].forEach(function(row, i) {
+      doc.setFont('helvetica', i===2 ? 'bold':'normal');
+      doc.setFontSize(9); doc.setTextColor(i===2 ? '#00b15a':'#444');
+      doc.text(row[0], pad, y); doc.text(row[1], W-pad, y, { align:'right' }); y+=6;
+    });
+    gap(6);
+
+    doc.setDrawColor('#00b15a'); doc.line(pad, y, W-pad, y); y+=5;
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor('#888');
+    doc.text('Alle Angaben sind Richtwerte auf Basis von Erfahrungswerten. | bio-circle.de', pad, y);
+
+    doc.save('Bio-Circle-Kostenvergleich.pdf');
+  }
+
+}());
+</script>
+</body>
+</html>
